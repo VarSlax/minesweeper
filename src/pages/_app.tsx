@@ -1,6 +1,27 @@
-import "@/styles/globals.css";
-import type { AppProps } from "next/app";
+import { Provider } from "react-redux";
+import store from "@/store";
 
-export default function App({ Component, pageProps }: AppProps) {
-  return <Component {...pageProps} />;
+import Image from "next/image";
+
+import MinesweeperWindow from "@/components/MinesweeperWindow";
+import { CentralizeWindow, GameTitle, TitleImageWrapper } from "@/styles/index";
+import titleImg from "@/win.png";
+import "@/styles/global.css";
+
+function App(): JSX.Element {
+  return (
+    <Provider store={store}>
+      <CentralizeWindow>
+        <GameTitle>
+          <TitleImageWrapper>
+            <Image src={titleImg} width={30} alt="win" />
+          </TitleImageWrapper>
+          MINESWEEPER
+        </GameTitle>
+        <MinesweeperWindow />
+      </CentralizeWindow>
+    </Provider>
+  );
 }
+
+export default App;
